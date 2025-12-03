@@ -17,7 +17,7 @@ export default class Matrix extends BaseClassComponent {
     isOver: false,
     overState: List([]),
   };
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const clears = isClear(nextProps.matrix);
     const overs = nextProps.reset;
     this.setState({

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRef } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
@@ -9,37 +9,26 @@ const formate = (num) => (
   num < 10 ? `0${num}`.split('') : `${num}`.split('')
 );
 
-// 自定义和Hook，更新多个变量
-const useNumberInfo = (initTimeCount = false, initTimes = new Date()) => {
-  const [time_count, setTimeCount] = useState(initTimeCount);
-  const [times, setTimes] = useState(initTimes);
-  const setNumberInfo = (numberInfo) => {
-    setTimeCount(numberInfo.time_count);
-    setTimes(numberInfo.times);
-  }
-  return [{ time_count, times }, setNumberInfo];
-}
+const NumberComponent = ({ time, number }) => {
+  const [times, setTimes] = useState(new Date());
+  const timeIntervalRef = useRef(null);
 
-const Number = ({ time, number }) => {
-  const [numberInfo, setNumberInfo] = useNumberInfo();
   useEffect(() => {
     if (!time) return;
     const clock = () => {
-      const count = +Number.timeInterval;
-      Number.timeInterval = setTimeout(() => {
-        setNumberInfo({ times: new Date(), time_count: count })
+      timeIntervalRef.current = setTimeout(() => {
+        setTimes(new Date());
         clock();
       }, 1000);
     }
     clock();
     return () => {
-      if (!time) return;
-      clearTimeout(Number.timeInterval);
+      clearTimeout(timeIntervalRef.current);
     }
-  }, [time, setNumberInfo]);
+  }, [time]);
 
   if (time) { // 右下角时钟
-    const now = numberInfo.times;
+    const now = times;
     const hour = formate(now.getHours());
     const min = formate(now.getMinutes());
     const sec = now.getSeconds() % 2;
@@ -70,13 +59,9 @@ const Number = ({ time, number }) => {
   );
 }
 
-Number.statics = {
-  timeInterval: null,
-};
-
-Number.propTypes = {
+NumberComponent.propTypes = {
   number: propTypes.number,
   time: propTypes.bool,
 };
 
-export default BaseFunctionComponent(Number);
+export default BaseFunctionComponent(NumberComponent);

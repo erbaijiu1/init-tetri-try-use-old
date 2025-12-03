@@ -1,3 +1,4 @@
+
 import Taro from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import cn from 'classnames';
@@ -14,14 +15,13 @@ const style = {
   s2: 's2',
   position: 'position'
 }
-const Sbutton = ({ active, color, size, top, left, label, position, arrow }) => {
+const Sbutton = ({ active, color, size, top, left, label, position, arrow, onTouchstart, onTouchend }) => {
   return (
     <View
       className={cn({ 'button': true, [style[color]]: true, [style[size]]: true })}
       style={{ top, left }}
-      ontouchstart={() => this.props.onTouchstart()}
-      ontouchend={() => this.props.onTouchend()}
-
+      onTouchStart={onTouchstart}
+      onTouchEnd={onTouchend}
     >
       <View className={cn({ 'active': active, 'i': true })} />
       { size === 's1' && <Text style={{ transform: `${arrow} scale(1,2)` }} className='em' /> }
@@ -39,6 +39,8 @@ Sbutton.propTypes = {
   position: propTypes.bool,
   arrow: propTypes.string,
   active: propTypes.bool.isRequired,
+  onTouchstart: propTypes.func,
+  onTouchend: propTypes.func
 };
 
 export default BaseFunctionComponent(Sbutton);

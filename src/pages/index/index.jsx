@@ -1,6 +1,8 @@
-import Taro, { Component } from '@tarojs/taro'
+
+import Taro from '@tarojs/taro'
+import { Component } from 'react'
 import { View } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
+import { connect } from 'react-redux'
 import propTypes from 'prop-types';
 import classnames from 'classnames';
 import Decorate from '../../components/decorate';
@@ -15,27 +17,7 @@ import Keyboard from '../../components/keyboard';
 import { i18n, lan } from '../../unit/const';
 import './index.less';
 
-@connect((state) => ({
-  pause: state.get('pause'),
-  music: state.get('music'),
-  matrix: state.get('matrix'),
-  next: state.get('next'),
-  cur: state.get('cur'),
-  speedStart: state.get('speedStart'),
-  speedRun: state.get('speedRun'),
-  startLines: state.get('startLines'),
-  clearLines: state.get('clearLines'),
-  points: state.get('points'),
-  max: state.get('max'),
-  reset: state.get('reset'),
-  drop: state.get('drop'),
-  keyboard: state.get('keyboard'),
-}))
 class Index extends Component {
-
-  config = {
-    disableScroll: true,
-  }
 
   render () {
     return (
@@ -94,4 +76,21 @@ Index.propTypes = {
   keyboard: propTypes.object.isRequired,
 };
 
-export default Index
+const mapStateToProps = (state) => ({
+  pause: state.get('pause'),
+  music: state.get('music'),
+  matrix: state.get('matrix'),
+  next: state.get('next'),
+  cur: state.get('cur'),
+  speedStart: state.get('speedStart'),
+  speedRun: state.get('speedRun'),
+  startLines: state.get('startLines'),
+  clearLines: state.get('clearLines'),
+  points: state.get('points'),
+  max: state.get('max'),
+  reset: state.get('reset'),
+  drop: state.get('drop'),
+  keyboard: state.get('keyboard'),
+});
+
+export default connect(mapStateToProps)(Index);

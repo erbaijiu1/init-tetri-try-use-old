@@ -1,5 +1,6 @@
+
 import { List } from 'immutable';
-import i18nConfig from '../../i18n.json';
+import i18nConfig from '../i18n.js';
 
 export const blockShape = {
   I: [
