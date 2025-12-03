@@ -31,8 +31,7 @@
     "@tarojs/shared": "3.6.17",
     "@tarojs/taro": "3.6.17",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "classnames": "^2.3.2"
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
@@ -46,6 +45,6 @@
     "tailwindcss": "^3.0.0",
     "postcss": "^8.0.0",
     "autoprefixer": "^10.0.0",
-    "sass": "^1.69.5"
+    "weapp-tailwindcss-webpack-plugin": "^2.0.0"
   }
 }

@@ -1,7 +1,15 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './pages/index/index'; 
+import ReactDOM from 'react-dom/client';
+import Game from './pages/index/index';
 
-const container = document.getElementById('root') || document.body;
-const root = createRoot(container);
-root.render(<App />);
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error("Could not find root element to mount to");
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <Game />
+  </React.StrictMode>
+);

@@ -4,8 +4,8 @@ export default {
   ],
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'Brick Game',
+    navigationBarBackgroundColor: '#FFD700',
+    navigationBarTitleText: '俄罗斯方块',
     navigationBarTextStyle: 'black'
   }
 }

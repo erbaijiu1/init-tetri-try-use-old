@@ -1,17 +1,14 @@
-import { Component, PropsWithChildren } from 'react'
-import './app.scss'
+import React from 'react'
+import { useLaunch } from '@tarojs/taro'
+import './app.css'
 
-class App extends Component<PropsWithChildren> {
-  componentDidMount () {}
+function App({ children }: { children: React.ReactNode }) {
+  useLaunch(() => {
+    console.log('App launched.')
+  })
 
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  render () {
-    // this.props.children will be the pages rendered by Taro
-    return this.props.children
-  }
+  // children 是将要会渲染的页面
+  return children
 }
 
 export default App
