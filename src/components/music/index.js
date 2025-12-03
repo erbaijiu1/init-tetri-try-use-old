@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import React from 'react'
 import { View } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
@@ -10,9 +10,9 @@ const style = {
   c: 'c'
 }
 
-const Music =() => {
+const Music = ({ data }) => {
   return (
-    <View className={cn( { bg: true, [style.music]: true, [style.c]: !this.props.data } )} />
+    <View className={cn( { bg: true, [style.music]: true, [style.c]: !data } )} />
   );
 }
 

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRef } from '@tarojs/taro';
+import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 import { View } from '@tarojs/components';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';
