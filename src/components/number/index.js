@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';
 import './index.less';
 
-const formate = (num) => (
+const format = (num) => (
   num < 10 ? `0${num}`.split('') : `${num}`.split('')
 );
 
@@ -31,8 +31,8 @@ const NumberComponent = ({ time, number, length = 6 }) => {
   let list = [];
   if (time) { // 右下角时钟
     const now = times;
-    const hour = formate(now.getHours());
-    const min = formate(now.getMinutes());
+    const hour = format(now.getHours());
+    const min = format(now.getMinutes());
     const sec = now.getSeconds() % 2;
     list = hour.concat(sec ? 'd' : 'd_c', min);
   } else {
