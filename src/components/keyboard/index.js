@@ -33,7 +33,7 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
         color='blue'
         size='s1'
         top='180rpx'
-        left='374rpx'
+        left='142rpx'
         label={i18n.drop[lan]}
         arrow='translate(0,-70rpx) rotate(180deg)'
         active={keyboard.get('drop')}
@@ -44,7 +44,7 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
         color='blue'
         size='s1'
         top='90rpx'
-        left='284rpx'
+        left='52rpx'
         label={i18n.left[lan]}
         arrow='translate(60rpx, -12rpx) rotate(270deg)'
         active={keyboard.get('left')}
@@ -55,7 +55,7 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
         color='blue'
         size='s1'
         top='90rpx'
-        left='464rpx'
+        left='232rpx'
         label={i18n.right[lan]}
         arrow='translate(-60rpx, -12rpx) rotate(90deg)'
         active={keyboard.get('right')}
@@ -66,7 +66,7 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
         color='blue'
         size='s0'
         top='100rpx'
-        left='52rpx'
+        left='520rpx'
         label={i18n.rotation[lan]}
         active={keyboard.get('rotate')}
         onTouchstart={() => handleTouchStart('rotate')}
