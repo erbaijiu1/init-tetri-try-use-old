@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react'
 import { View } from '@tarojs/components';
 import cn from 'classnames';
@@ -27,32 +28,28 @@ const NumberComponent = ({ time, number, length = 6 }) => {
     }
   }, [time]);
 
+  let list = [];
   if (time) { // 右下角时钟
     const now = times;
     const hour = formate(now.getHours());
     const min = formate(now.getMinutes());
     const sec = now.getSeconds() % 2;
-    const t = hour.concat(sec ? 'd' : 'd_c', min);
-    return (
-      <View className='number'>
-      {
-        t.map((e, k) => (
-          <View key={k}><View className={cn(['bg', `s_${e}`])} /></View>
-        ))
-      }
-    </View>
-    );
+    list = hour.concat(sec ? 'd' : 'd_c', min);
+  } else {
+    const num = String(number || 0).split('');
+    for (let i = 0, len = length - num.length; i < len; i++) {
+      num.unshift('n');
+    }
+    list = num;
   }
 
-  const num = String(number || 0).split('');
-  for (let i = 0, len = length - num.length; i < len; i++) {
-    num.unshift('n');
-  }
   return (
-      <View className='number'>
+    <View className='number'>
       {
-        num.map((e, k) => (
-          <View key={k}><View className={cn(['bg', `s_${e}`])} /></View>
+        list.map((e, k) => (
+          <View className='number-item' key={k}>
+            <View className={cn(['bg', `s_${e}`])} />
+          </View>
         ))
       }
     </View>
