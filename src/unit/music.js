@@ -1,3 +1,4 @@
+
 import Taro from '@tarojs/taro';
 import store from '../store';
 import bgmSource from '../asset/music/music.mp3';
@@ -10,10 +11,14 @@ let sfxAudio = null;
 // Initialize audio contexts
 const initAudio = () => {
   if (process.env.TARO_ENV === 'weapp') {
-    Taro.setInnerAudioOption({
-      obeyMuteSwitch: false,
-      mixWithOther: true,
-    });
+    try {
+      Taro.setInnerAudioOption({
+        obeyMuteSwitch: false,
+        mixWithOther: true,
+      });
+    } catch (e) {
+      // Ignore setInnerAudioOption error in dev tools
+    }
   }
 
   if (!bgmAudio) {
