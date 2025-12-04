@@ -1,4 +1,4 @@
-export default defineAppConfig({
+export default {
   pages: [
     'pages/index/index'
   ],
@@ -8,4 +8,4 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black',
     navigationBarTitleText: 'Tetris'
   }
-})
+}

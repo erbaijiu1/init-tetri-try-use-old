@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro';
 import store from '../store';
 import bgmSource from '../asset/music/music.mp3';
-import sfxSource from '../asset/music/music.wav';
 
 const music = {};
 
@@ -25,7 +24,8 @@ const initAudio = () => {
 
   if (!sfxAudio) {
     sfxAudio = Taro.createInnerAudioContext();
-    sfxAudio.src = sfxSource;
+    // Use music.mp3 as a placeholder for SFX to avoid large WAV file dependency
+    sfxAudio.src = bgmSource;
   }
 };
 
@@ -50,7 +50,7 @@ const playSfx = () => {
   initAudio();
   const state = store.getState();
   if (state.get('music')) {
-    // Stop previous sound to allow rapid replay
+    // Reset and play for SFX
     sfxAudio.stop();
     sfxAudio.play();
   }
@@ -68,7 +68,6 @@ store.subscribe(() => {
   const state = store.getState();
   const nextMusicState = state.get('music');
   const isPause = state.get('pause');
-  // Simple check: if not paused, we try to control BGM based on music state
   
   if (nextMusicState !== currentMusicState) {
     initAudio();
