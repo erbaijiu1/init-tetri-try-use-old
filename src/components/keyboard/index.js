@@ -32,8 +32,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='42rpx'
-        left='73rpx'
+        top='280rpx'
+        left='100rpx'
         label={i18n.drop[lan]}
         arrow='translate(0,-70rpx) rotate(180deg)'
         active={keyboard.get('drop')}
@@ -43,8 +43,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='36rpx'
-        left='4rpx'
+        top='140rpx'
+        left='16rpx'
         label={i18n.left[lan]}
         arrow='translate(60rpx, -12rpx) rotate(270deg)'
         active={keyboard.get('left')}
@@ -54,8 +54,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='36rpx'
-        left='52rpx'
+        top='140rpx'
+        left='200rpx'
         label={i18n.right[lan]}
         arrow='translate(-60rpx, -12rpx) rotate(90deg)'
         active={keyboard.get('right')}
@@ -65,8 +65,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s0'
-        top='42rpx'
-        left='104rpx'
+        top='160rpx'
+        left='400rpx'
         label={i18n.rotation[lan]}
         active={keyboard.get('rotate')}
         onTouchstart={() => handleTouchStart('rotate')}
