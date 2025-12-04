@@ -1,3 +1,4 @@
+
 .number {
   height: 24px;
   font-size: 14px;
@@ -9,16 +10,21 @@
   width: 14px;
   height: 24px;
   margin-top: -2.5px;
-  transform: scale(0.5);
+  position: relative;
 }
 
 .number .bg {
   display: block;
   width: 28px;
   height: 48px;
-  background: url('../../asset/img.png');
+  background-image: url('../../asset/img.png');
   background-repeat: no-repeat;
   overflow: hidden;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .number .s_0 { background-position: -150px -50px; }
