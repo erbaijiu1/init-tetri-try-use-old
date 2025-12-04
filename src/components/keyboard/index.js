@@ -1,3 +1,4 @@
+
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Immutable from 'immutable';
@@ -26,28 +27,18 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       className='keyboard'
       style={{ marginTop: '60rpx' }}
     >
-      <Sbutton
-        color='blue'
-        size='s1'
-        top='0rpx'
-        left='374rpx'
-        label={i18n.rotation[lan]}
-        arrow='translate(0, 63rpx)'
-        position
-        active={keyboard.get('rotate')}
-        onTouchstart={() => handleTouchStart('rotate')}
-        onTouchend={() => handleTouchEnd('rotate')}
-      />
+      {/* 移除顶部的旋转按钮 */}
+
       <Sbutton
         color='blue'
         size='s1'
         top='180rpx'
         left='374rpx'
-        label={i18n.down[lan]}
+        label={i18n.drop[lan]}
         arrow='translate(0,-70rpx) rotate(180deg)'
-        active={keyboard.get('down')}
-        onTouchstart={() => handleTouchStart('down')}
-        onTouchend={() => handleTouchEnd('down')}
+        active={keyboard.get('drop')}
+        onTouchstart={() => handleTouchStart('space')}
+        onTouchend={() => handleTouchEnd('space')}
       />
       <Sbutton
         color='blue'
@@ -76,10 +67,10 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
         size='s0'
         top='100rpx'
         left='52rpx'
-        label={`${i18n.drop[lan]} (SPACE)`}
-        active={keyboard.get('drop')}
-        onTouchstart={() => handleTouchStart('space')}
-        onTouchend={() => handleTouchEnd('space')}
+        label={i18n.rotation[lan]}
+        active={keyboard.get('rotate')}
+        onTouchstart={() => handleTouchStart('rotate')}
+        onTouchend={() => handleTouchEnd('rotate')}
       />
       <Sbutton
         color='red'
