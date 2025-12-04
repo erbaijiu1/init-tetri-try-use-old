@@ -1,10 +1,9 @@
-
 import {
   getNextType
-} from '../unit/index.js';
-import * as reducerType from '../constants/index.js';
-import Block from '../unit/block.js';
-import keyboard from './keyboard.js';
+} from '../unit';
+import * as reducerType from '../constants';
+import Block from '../unit/block';
+import keyboard from './keyboard';
 
 function nextBlock(next = getNextType()) {
   return {
@@ -121,3 +120,4 @@ export default {
   keyboard,
   music,
 };
+

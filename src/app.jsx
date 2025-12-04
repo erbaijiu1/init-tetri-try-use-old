@@ -1,8 +1,7 @@
-
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Provider } from 'react-redux'
-import store from './store/index.js'
-import './app.css'
+import store from './store'
+import './app.less'
 
 class App extends Component {
   render () {

@@ -1,6 +1,5 @@
-
-import { getNextType } from '../../unit/index.js';
-import * as reducerType from '../../constants/index.js';
+import { getNextType } from '../../unit';
+import * as reducerType from '../../constants';
 
 const initState = getNextType();
 const parse = (state = initState, action) => {

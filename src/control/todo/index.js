@@ -1,12 +1,11 @@
-
-import left from './left.js';
-import right from './right.js';
-import down from './down.js';
-import rotate from './rotate.js';
-import space from './space.js';
-import s from './s.js';
-import r from './r.js';
-import p from './p.js';
+import left from './left';
+import right from './right';
+import down from './down';
+import rotate from './rotate';
+import space from './space';
+import s from './s';
+import r from './r';
+import p from './p';
 
 export default {
   left,

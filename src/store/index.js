@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import rootReducer from '../reducers/index.js'
+import rootReducer from '../reducers'
 
 const composeEnhancers =
   typeof window === 'object' &&

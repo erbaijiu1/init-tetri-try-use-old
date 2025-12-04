@@ -1,7 +1,6 @@
-
-import event from '../../unit/event.js';
-import states from '../states.js';
-import actions from '../../actions/index.js';
+import event from '../../unit/event';
+import states from '../states';
+import actions from '../../actions';
 
 const down = (store) => {
   store.dispatch(actions.keyboard.pause(true));

@@ -1,5 +1,4 @@
-
-import * as reducerType from '../../constants/index.js';
+import * as reducerType from '../../constants';
 
 const initState = null;
 

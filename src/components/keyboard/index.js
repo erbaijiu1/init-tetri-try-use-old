@@ -1,14 +1,13 @@
-
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Immutable from 'immutable';
 import propTypes from 'prop-types';
-import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
-import Sbutton from './button/index.js';
-import store from '../../store/index.js';
-import todo from '../../control/todo/index.js';
-import { i18n, lan } from '../../unit/const.js';
-import './index.css';
+import BaseFunctionComponent from '../common/BaseFunctionComponent';
+import Sbutton from './button';
+import store from '../../store';
+import todo from '../../control/todo';
+import { i18n, lan } from '../../unit/const';
+import './index.less';
 
 const touchEventCatch = {}; // 对于手机操作, 触发了touchstart, 将作出记录
 

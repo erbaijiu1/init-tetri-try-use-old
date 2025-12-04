@@ -1,14 +1,13 @@
-
 /* eslint-disable react/react-in-jsx-scope */
 import { View, Text } from '@tarojs/components';
 import { List } from 'immutable';
 import classnames from 'classnames';
 import propTypes from 'prop-types';
-import BaseClassComponent from '../common/BaseClassComponent.js';
-import { isClear } from '../../unit/index.js';
-import { fillLine, blankLine } from '../../unit/const.js';
-import states from '../../control/states.js';
-import './index.css';
+import BaseClassComponent from '../common/BaseClassComponent';
+import { isClear } from '../../unit/';
+import { fillLine, blankLine } from '../../unit/const';
+import states from '../../control/states';
+import './index.less';
 
 const t = setTimeout;
 export default class Matrix extends BaseClassComponent {

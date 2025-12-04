@@ -1,10 +1,9 @@
-
-import { want } from '../../unit/index.js';
-import event from '../../unit/event.js';
-import actions from '../../actions/index.js';
-import states from '../states.js';
-import { speeds, delays } from '../../unit/const.js';
-import { music } from '../../unit/music.js';
+import { want } from '../../unit';
+import event from '../../unit/event';
+import actions from '../../actions';
+import states from '../states';
+import { speeds, delays } from '../../unit/const';
+import { music } from '../../unit/music';
 
 const down = (store) => {
   store.dispatch(actions.keyboard.left(true));

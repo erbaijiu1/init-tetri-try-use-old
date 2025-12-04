@@ -1,6 +1,5 @@
-
-import event from '../../unit/event.js';
-import actions from '../../actions/index.js';
+import event from '../../unit/event';
+import actions from '../../actions';
 
 const down = (store) => {
   store.dispatch(actions.keyboard.music(true));

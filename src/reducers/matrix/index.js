@@ -1,6 +1,5 @@
-
-import * as reducerType from '../../constants/index.js';
-import { blankMatrix } from '../../unit/const.js';
+import * as reducerType from '../../constants';
+import { blankMatrix } from '../../unit/const';
 
 const INITIAL_STATE = blankMatrix;
 

@@ -1,10 +1,9 @@
-
 import Taro from '@tarojs/taro'
 import cn from 'classnames';
 import { View, Text } from '@tarojs/components';
-import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
-import { i18n, lan } from '../../unit/const.js';
-import './index.css';
+import BaseFunctionComponent from '../common/BaseFunctionComponent';
+import { i18n, lan } from '../../unit/const';
+import './index.less';
 
 const Decorate = () =>  {
     return (

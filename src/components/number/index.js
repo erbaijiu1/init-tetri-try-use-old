@@ -1,16 +1,15 @@
-
 import React, { useState, useEffect, useRef } from 'react'
-import { View } from '@tarojs/components';
+import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
-import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
-import './index.css';
+import BaseFunctionComponent from '../common/BaseFunctionComponent';
+import './index.less';
 
-const format = (num) => (
+const formate = (num) => (
   num < 10 ? `0${num}`.split('') : `${num}`.split('')
 );
 
-const NumberComponent = ({ time, number, length = 6 }) => {
+const NumberComponent = ({ time, number }) => {
   const [times, setTimes] = useState(new Date());
   const timeIntervalRef = useRef(null);
 
@@ -28,28 +27,32 @@ const NumberComponent = ({ time, number, length = 6 }) => {
     }
   }, [time]);
 
-  let list = [];
   if (time) { // 右下角时钟
     const now = times;
-    const hour = format(now.getHours());
-    const min = format(now.getMinutes());
+    const hour = formate(now.getHours());
+    const min = formate(now.getMinutes());
     const sec = now.getSeconds() % 2;
-    list = hour.concat(sec ? 'd' : 'd_c', min);
-  } else {
-    const num = String(number || 0).split('');
-    for (let i = 0, len = length - num.length; i < len; i++) {
-      num.unshift('n');
-    }
-    list = num;
+    const t = hour.concat(sec ? 'd' : 'd_c', min);
+    return (
+      <View className='number'>
+      {
+        t.map((e, k) => (
+          <View key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
+        ))
+      }
+    </View>
+    );
   }
 
+  const num = String(number || 0).split('');
+  for (let i = 0, len = 6 - num.length; i < len; i++) {
+    num.unshift('n');
+  }
   return (
-    <View className='number'>
+      <View className='number'>
       {
-        list.map((e, k) => (
-          <View className='number-item' key={k}>
-            <View className={cn(['bg', `s_${e}`])} />
-          </View>
+        num.map((e, k) => (
+          <View key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
         ))
       }
     </View>
@@ -59,7 +62,6 @@ const NumberComponent = ({ time, number, length = 6 }) => {
 NumberComponent.propTypes = {
   number: propTypes.number,
   time: propTypes.bool,
-  length: propTypes.number,
 };
 
 export default BaseFunctionComponent(NumberComponent);

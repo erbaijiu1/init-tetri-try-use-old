@@ -1,6 +1,5 @@
-
-import * as reducerType from '../../constants/index.js';
-import { maxPoint } from '../../unit/const.js';
+import * as reducerType from '../../constants';
+import { maxPoint } from '../../unit/const';
 
 let initState = 0;
 if (initState > maxPoint) {
