@@ -1,0 +1,14 @@
+.next {
+  margin-top: 10px;
+}
+.next .b {
+  float: left;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 1px solid #9ead86;
+}
+.next .c {
+  background: #000;
+  border-color: #000;
+}

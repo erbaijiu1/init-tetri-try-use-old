@@ -1,6 +1,6 @@
 
 import Taro from '@tarojs/taro';
-import store from '../store';
+import store from '../store/index.js';
 import bgmSource from '../asset/music/music.mp3';
 
 const music = {};
@@ -18,6 +18,7 @@ const initAudio = () => {
       });
     } catch (e) {
       // Ignore setInnerAudioOption error in dev tools
+      console.warn('setInnerAudioOption failed', e);
     }
   }
 

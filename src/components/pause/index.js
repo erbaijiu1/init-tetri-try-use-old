@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect, useRef } from 'react'
 import { View } from '@tarojs/components'
 import cn from 'classnames';
 import propTypes from 'prop-types';
-import BaseFunctionComponent from '../common/BaseFunctionComponent';
-import './index.less';
+import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
+import './index.css';
 
 const style = {
   pause: 'pause',

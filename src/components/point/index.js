@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 import { View } from '@tarojs/components';
-import BaseFunctionComponent from '../common/BaseFunctionComponent';
-import Number from '../number';
-import { i18n, lan } from '../../unit/const';
-import './index.less';
+import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
+import Number from '../number/index.js';
+import { i18n, lan } from '../../unit/const.js';
+import './index.css';
 
 const DF = i18n.point[lan];
 const ZDF = i18n.highestScore[lan];

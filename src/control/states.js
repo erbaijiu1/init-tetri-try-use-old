@@ -1,9 +1,10 @@
+
 import { List } from 'immutable';
-import store from '../store';
-import { want, isClear, isOver } from '../unit';
-import actions from '../actions';
-import { speeds, blankLine, blankMatrix, clearPoints, eachLines } from '../unit/const';
-import { music } from '../unit/music';
+import store from '../store/index.js';
+import { want, isClear, isOver } from '../unit/index.js';
+import actions from '../actions/index.js';
+import { speeds, blankLine, blankMatrix, clearPoints, eachLines } from '../unit/const.js';
+import { music } from '../unit/music.js';
 
 
 const getStartMatrix = (startLines) => { // 生成startLines

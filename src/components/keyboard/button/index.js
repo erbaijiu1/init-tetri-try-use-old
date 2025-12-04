@@ -1,10 +1,9 @@
-
 import Taro from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import cn from 'classnames';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../../common/BaseFunctionComponent';
-import './index.less';
+import './index.css';
 
 const style = {
   blue: 'blue',

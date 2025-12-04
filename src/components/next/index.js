@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import cn from 'classnames';
 import propTypes from 'prop-types';
-import BaseFunctionComponent from '../common/BaseFunctionComponent';
-import { blockShape } from '../../unit/const';
-import './index.less';
+import BaseFunctionComponent from '../common/BaseFunctionComponent.js';
+import { blockShape } from '../../unit/const.js';
+import './index.css';
 
 const xy = { // 方块在下一个中的坐标
   I: [1, 0],
@@ -43,7 +44,7 @@ const Next = ({ data }) => {
     <View className='next'>
       {
         block.map((arr, k1) => (
-          <View key={String(k1)}>
+          <View key={String(k1)} style={{height: '12px'}}>
             {
               arr.map((e, k2) => (
                 <Text className={cn([e > 0 ? 'c' : '', 'b'])} key={String(k2)} />

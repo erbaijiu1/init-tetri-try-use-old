@@ -1,4 +1,5 @@
-import { blockType } from './const';
+
+import { blockType } from './const.js';
 
 // 随机获取下一个方块类型
 export function getNextType() {

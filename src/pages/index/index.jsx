@@ -5,17 +5,18 @@ import { View } from '@tarojs/components'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types';
 import classnames from 'classnames';
-import Decorate from '../../components/decorate';
-import Matrix from '../../components/matrix';
-import Logo from '../../components/logo';
-import Number from '../../components/number';
-import Next from '../../components/next';
-import Music from '../../components/music';
-import Pause from '../../components/pause';
-import Point from '../../components/point';
-import Keyboard from '../../components/keyboard';
-import { i18n, lan } from '../../unit/const';
-import './index.less';
+import Decorate from '../../components/decorate/index.js';
+import Matrix from '../../components/matrix/index.js';
+import Logo from '../../components/logo/index.js';
+import Number from '../../components/number/index.js';
+import Next from '../../components/next/index.js';
+import Music from '../../components/music/index.js';
+import Pause from '../../components/pause/index.js';
+import Point from '../../components/point/index.js';
+import Keyboard from '../../components/keyboard/index.js';
+import Speed from '../../components/speed/index.js';
+import { i18n, lan } from '../../unit/const.js';
+import './index.css';
 
 class Index extends Component {
 
@@ -41,6 +42,7 @@ class Index extends Component {
                   number={this.props.cur ? this.props.speedRun : this.props.speedStart}
                   length={1}
                 />
+                <Speed data={this.props.cur ? this.props.speedRun : this.props.speedStart} />
                 <View className='p'>{i18n.next[lan]}</View>
                 <Next data={this.props.next} />
                 <View className='bottom'>

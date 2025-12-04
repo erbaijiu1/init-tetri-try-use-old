@@ -1,0 +1,15 @@
+.pause-container {
+  position: absolute;
+  bottom: 0;
+  left: 45px;
+}
+.pause {
+  width: 20px;
+  height: 18px;
+  background-image: url('../../resource.png');
+  background-position: -100px -75px;
+}
+.pause.c {
+  opacity: 0.5;
+  background-position: -75px -75px;
+}

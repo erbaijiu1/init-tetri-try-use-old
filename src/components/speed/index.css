@@ -1,0 +1,22 @@
+.speed {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.speed-item {
+  width: 16rpx;
+  height: 10rpx;
+  margin: 0 4rpx;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  opacity: 0.3;
+}
+
+.speed-item.active {
+  background-color: #000;
+  opacity: 1;
+}

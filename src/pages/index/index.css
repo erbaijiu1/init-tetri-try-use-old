@@ -1,0 +1,60 @@
+
+.app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.rect {
+  width: 640px;
+  height: 960px;
+  padding-top: 60px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.rect.drop {
+  transform: translateY(5px);
+}
+
+.screen {
+  width: 390px;
+  height: 478px;
+  border: 5px solid #987f0f;
+  margin: 0 auto;
+  position: relative;
+}
+
+.panel {
+  width: 380px;
+  height: 468px;
+  margin: 0 auto;
+  background: #9ead86;
+  padding: 8px;
+  border: 2px solid #494536;
+}
+
+.state {
+  width: 108px;
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+.state .p {
+  line-height: 20px;
+  height: 20px;
+  font-family: "simhei", sans-serif;
+  font-weight: bold;
+  color: #000;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
+.state .bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

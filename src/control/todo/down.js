@@ -1,8 +1,9 @@
-import { want } from '../../unit';
-import event from '../../unit/event';
-import actions from '../../actions';
-import states from '../states';
-import { music } from '../../unit/music';
+
+import { want } from '../../unit/index.js';
+import event from '../../unit/event.js';
+import actions from '../../actions/index.js';
+import states from '../states.js';
+import { music } from '../../unit/music.js';
 
 const down = (store) => {
   store.dispatch(actions.keyboard.down(true));

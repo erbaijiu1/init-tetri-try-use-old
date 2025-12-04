@@ -1,5 +1,6 @@
+
 import { List } from 'immutable';
-import { blockShape, origin } from './const';
+import { blockShape, origin } from './const.js';
 
 class Block {
   constructor(option) {
