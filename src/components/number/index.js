@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect, useRef } from 'react'
 import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';
-import './index.less';
+import './index.css';
 
 const formate = (num) => (
   num < 10 ? `0${num}`.split('') : `${num}`.split('')
@@ -37,7 +38,7 @@ const NumberComponent = ({ time, number }) => {
       <View className='number'>
       {
         t.map((e, k) => (
-          <View key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
+          <View className='num-ele' key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
         ))
       }
     </View>
@@ -52,7 +53,7 @@ const NumberComponent = ({ time, number }) => {
       <View className='number'>
       {
         num.map((e, k) => (
-          <View key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
+          <View className='num-ele' key={k}><Text className={cn(['bg', `s_${e}`])} /></View>
         ))
       }
     </View>
