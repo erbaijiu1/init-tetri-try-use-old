@@ -1,5 +1,6 @@
-import React from 'react';
-import { View } from '@tarojs/components';
+
+import Taro from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import Immutable from 'immutable';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';
@@ -26,34 +27,24 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       className='keyboard'
       style={{ marginTop: '60rpx' }}
     >
+      {/* 移除顶部的旋转按钮 */}
+
       <Sbutton
         color='blue'
         size='s1'
-        top='0rpx'
-        left='374rpx'
-        label={i18n.rotation[lan]}
-        arrow='translate(0, 63rpx)'
-        position
-        active={keyboard.get('rotate')}
-        onTouchstart={() => handleTouchStart('rotate')}
-        onTouchend={() => handleTouchEnd('rotate')}
-      />
-      <Sbutton
-        color='blue'
-        size='s1'
-        top='180rpx'
-        left='374rpx'
-        label={i18n.down[lan]}
+        top='280rpx'
+        left='100rpx'
+        label={i18n.drop[lan]}
         arrow='translate(0,-70rpx) rotate(180deg)'
-        active={keyboard.get('down')}
-        onTouchstart={() => handleTouchStart('down')}
-        onTouchend={() => handleTouchEnd('down')}
+        active={keyboard.get('drop')}
+        onTouchstart={() => handleTouchStart('space')}
+        onTouchend={() => handleTouchEnd('space')}
       />
       <Sbutton
         color='blue'
         size='s1'
-        top='90rpx'
-        left='284rpx'
+        top='140rpx'
+        left='16rpx'
         label={i18n.left[lan]}
         arrow='translate(60rpx, -12rpx) rotate(270deg)'
         active={keyboard.get('left')}
@@ -63,8 +54,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='90rpx'
-        left='464rpx'
+        top='140rpx'
+        left='200rpx'
         label={i18n.right[lan]}
         arrow='translate(-60rpx, -12rpx) rotate(90deg)'
         active={keyboard.get('right')}
@@ -74,12 +65,12 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s0'
-        top='100rpx'
-        left='52rpx'
-        label={`${i18n.drop[lan]} (SPACE)`}
-        active={keyboard.get('drop')}
-        onTouchstart={() => handleTouchStart('space')}
-        onTouchend={() => handleTouchEnd('space')}
+        top='160rpx'
+        left='400rpx'
+        label={i18n.rotation[lan]}
+        active={keyboard.get('rotate')}
+        onTouchstart={() => handleTouchStart('rotate')}
+        onTouchend={() => handleTouchEnd('rotate')}
       />
       <Sbutton
         color='red'
