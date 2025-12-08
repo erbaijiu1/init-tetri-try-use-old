@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text } from '@tarojs/components'
+import React, { useState, useEffect } from 'react';
+import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';

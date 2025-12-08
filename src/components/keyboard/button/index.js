@@ -1,6 +1,5 @@
-
-import Taro from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import React from 'react';
+import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../../common/BaseFunctionComponent';
@@ -40,7 +39,7 @@ Sbutton.propTypes = {
   arrow: propTypes.string,
   active: propTypes.bool.isRequired,
   onTouchstart: propTypes.func,
-  onTouchend: propTypes.func
+  onTouchend: propTypes.func,
 };
 
 export default BaseFunctionComponent(Sbutton);

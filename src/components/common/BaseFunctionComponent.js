@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import React from 'react';
 import { is, fromJS } from 'immutable';
 
 const depEqual = (prevProps, nextProps) => {
@@ -24,6 +24,6 @@ const depEqual = (prevProps, nextProps) => {
   return true;
 };
 
-const MemoBaseComponent = funcComponent => memo(funcComponent, depEqual);
+const MemoBaseComponent = funcComponent => React.memo(funcComponent, depEqual);
 
 export default MemoBaseComponent;

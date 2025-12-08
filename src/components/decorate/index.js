@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import React from 'react';
 import cn from 'classnames';
 import { View, Text } from '@tarojs/components';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';

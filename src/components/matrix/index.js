@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { View, Text } from '@tarojs/components';
 import { List } from 'immutable';
 import classnames from 'classnames';
@@ -17,7 +17,7 @@ export default class Matrix extends BaseClassComponent {
     isOver: false,
     overState: List([]),
   };
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const clears = isClear(nextProps.matrix);
     const overs = nextProps.reset;
     this.setState({

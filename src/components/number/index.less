@@ -1,52 +1,33 @@
-@digit-offset-y: -50px;
-@digit-sheet: '../../asset/img.png';
-
-.number {
-  height: 24rpx;
-  font-size: 14rpx;
+.number{
+  height:24px;
+  font-size:14px;
   display: flex;
   justify-content: flex-end;
-}
-
-/*postcss-pxtransform disable*/
-.number > view {
-  width: 14px;
-  height: 24px;
-  margin-top: -2.5px;
-  position: relative;
-  overflow: hidden;
-}
-
-.number .bg {
-  display: block;
-  width: 28px;
-  height: 48px;
-  background-image: url(@digit-sheet);
-  background-repeat: no-repeat;
-  transform: scale(0.5);
-  transform-origin: 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.define-digit(@name, @x) {
-  .number .s_@{name} {
-    background-position: @x @digit-offset-y;
+  View {
+    width: 14px;
+    height: 24px;
+    margin-top: -2.5px;
+    transform: scale(0.5);
   }
+  .bg {
+    display: block;
+    width: 28px;
+    height: 48px;
+    background: url('../../asset/img.png');
+    background-repeat:no-repeat;
+    overflow: hidden;
+  }
+  .s_0{background-position:-150px -50px;}
+  .s_1{background-position:-178px -50px;}
+  .s_2{background-position:-206px -50px;}
+  .s_3{background-position:-234px -50px;}
+  .s_4{background-position:-262px -50px;}
+  .s_5{background-position:-290px -50px;}
+  .s_6{background-position:-318px -50px;}
+  .s_7{background-position:-346px -50px;}
+  .s_8{background-position:-374px -50px;}
+  .s_9{background-position:-402px -50px;}
+  .s_n{background-position:-430px -50px;}
+  .s_d{background-position:-486px -50px;}
+  .s_d_c{background-position:-458px -50px;}
 }
-
-.define-digit(0, -150px);
-.define-digit(1, -178px);
-.define-digit(2, -206px);
-.define-digit(3, -234px);
-.define-digit(4, -262px);
-.define-digit(5, -290px);
-.define-digit(6, -318px);
-.define-digit(7, -346px);
-.define-digit(8, -374px);
-.define-digit(9, -402px);
-.define-digit(n, -430px);
-.define-digit(d, -486px);
-.define-digit(d_c, -458px);
-/*postcss-pxtransform enable*/

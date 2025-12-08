@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react';
 import { View } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
@@ -17,99 +17,95 @@ const styles = {
   l4: 'l4',
 }
 
-const Logo = ({ cur, reset }) => {
-  const [style, setStyle] = useState(styles.r1);
-  const [display, setDisplay] = useState('none');
-  const timeoutRef = useRef(null);
+const animate = (cur,reset, setStyle, setDisplay ) => {
+  clearTimeout(Logo.timeout);
+  setStyle(styles.r1);
+  setDisplay('none')
+  if (cur || reset) {
+    setDisplay('none')
+    return;
+  }
 
-  useEffect(() => {
-    clearTimeout(timeoutRef.current);
-    setStyle(styles.r1);
-    setDisplay('none');
-    
-    if (cur || reset) {
+  let m = 'r'; // 方向
+  let count = 0;
+
+  const set = (func, delay) => {
+    if (!func) return;
+    Logo.timeout = setTimeout(func, delay);
+  };
+
+  const show = (func) => { // 显示
+    set(() => {
+      setDisplay('block')
+      if (func) func();
+    }, 150);
+  };
+
+  const hide = (func) => { // 隐藏
+    set(() => {
       setDisplay('none')
-      return;
-    }
+      if (func) func();
+    }, 150);
+  };
 
-    let m = 'r'; // 方向
-    let count = 0;
-
-    const set = (func, delay) => {
-      if (!func) return;
-      timeoutRef.current = setTimeout(func, delay);
-    };
-
-    const show = (func) => { // 显示
+  const eyes = (func, delay1, delay2) => { // 龙在眨眼睛
+    set(() => {
+      setStyle(styles[m + 2]);
       set(() => {
-        setDisplay('block')
+        setStyle(styles[m + 1]);
         if (func) func();
-      }, 150);
-    };
+      }, delay2);
+    }, delay1);
+  };
 
-    const hide = (func) => { // 隐藏
+  const run = (func) => { // 开始跑步啦！
+    set(() => {
+      setStyle(styles[m + 4]);
       set(() => {
-        setDisplay('none')
-        if (func) func();
-      }, 150);
-    };
-
-    const eyes = (func, delay1, delay2) => { // 龙在眨眼睛
-      set(() => {
-        setStyle(styles[m + 2]);
-        set(() => {
-          setStyle(styles[m + 1]);
-          if (func) func();
-        }, delay2);
-      }, delay1);
-    };
-
-    const run = (func) => { // 开始跑步啦！
-      set(() => {
-        setStyle(styles[m + 4]);
-        set(() => {
-          setStyle(styles[m + 3]);
-          count++;
-          if (count === 10 || count === 20 || count === 30) m = m === 'r' ? 'l' : 'r';
-          if (count < 40) {
-            run(func);
-            return;
-          }
-          setStyle(styles[m + 1]);
-          if (func) set(func, 4000);
-        }, 100);
+        setStyle(styles[m + 3]);
+        count++;
+        if (count === 10 || count === 20 || count === 30) m = m === 'r' ? 'l' : 'r';
+        if (count < 40) {
+          run(func);
+          return;
+        }
+        setStyle(styles[m + 1]);
+        if (func) set(func, 4000);
       }, 100);
-    };
+    }, 100);
+  };
 
-    const dra = () => {
-      count = 0;
+  const dra = () => {
+    count = 0;
+    eyes(() => {
       eyes(() => {
         eyes(() => {
-          eyes(() => {
-            setStyle(styles[m + 2]);
-            run(dra);
-          }, 150, 150);
+          setStyle(styles[m + 2]);
+          run(dra);
         }, 150, 150);
-      }, 1000, 1500);
-    };
+      }, 150, 150);
+    }, 1000, 1500);
+  };
 
-    show(() => { // 忽隐忽现
-      hide(() => {
-        show(() => {
-          hide(() => {
-            show(() => {
-              dra(); // 开始运动
-            });
+  show(() => { // 忽隐忽现
+    hide(() => {
+      show(() => {
+        hide(() => {
+          show(() => {
+            dra(); // 开始运动
           });
         });
       });
     });
+  });
+}
 
-    return () => {
-      clearTimeout(timeoutRef.current);
-    }
+const Logo = ({ cur, reset }) => {
+  const [style, setStyle] = useState(styles.r1);
+  const [display, setDisplay] = useState('none');
+  useEffect(() => {
+    animate(cur, reset, setStyle, setDisplay);
   }, [cur, reset]);
-
   return (
     <View className='logo' style={{ display: display }}>
       <View className={cn({ bg: true, 'dragon': true, [style]: true })} />
@@ -121,6 +117,9 @@ const Logo = ({ cur, reset }) => {
 Logo.propTypes = {
   cur: propTypes.bool,
   reset: propTypes.bool,
+};
+Logo.statics = {
+  timeout: null,
 };
 
 export default BaseFunctionComponent(Logo);
