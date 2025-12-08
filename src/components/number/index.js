@@ -37,8 +37,7 @@ const Number = ({ time, number }) => {
       <View className='number'>
       {
         t.map((e, k) => (
-          <View key={k}><Text className={cn(['bg', `s_${e}`])}> </Text></View>
-        ))
+          <View key={`${k}-${e}`}><Text className={cn(['bg', `s_${e}`])}> </Text></View>        ))
       }
     </View>
     );
@@ -52,7 +51,7 @@ const Number = ({ time, number }) => {
       <View className='number'>
       {
         num.map((e, k) => (
-          <View key={k}><Text className={cn(['bg', `s_${e}`])}> </Text></View>
+          <View key={`${k}-${e}`}><Text className={cn(['bg', `s_${e}`])}> </Text></View>
         ))
       }
     </View>
