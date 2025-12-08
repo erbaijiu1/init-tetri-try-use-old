@@ -1,16 +1,15 @@
-
-import React, { useState, useEffect, useRef } from 'react'
-import { View } from '@tarojs/components';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text } from '@tarojs/components';
 import cn from 'classnames';
 import propTypes from 'prop-types';
 import BaseFunctionComponent from '../common/BaseFunctionComponent';
-import './index.css';
+import './index.less';
 
 const formate = (num) => (
   num < 10 ? `0${num}`.split('') : `${num}`.split('')
 );
 
-const NumberComponent = ({ time, number }) => {
+const Number = ({ time, number }) => {
   const [times, setTimes] = useState(new Date());
   const timeIntervalRef = useRef(null);
 
@@ -38,7 +37,7 @@ const NumberComponent = ({ time, number }) => {
       <View className='number'>
       {
         t.map((e, k) => (
-          <View className='num-ele' key={k}><View className={cn(['bg', `s_${e}`])} /></View>
+          <View key={k}><Text className={cn(['bg', `s_${e}`])}> </Text></View>
         ))
       }
     </View>
@@ -53,16 +52,16 @@ const NumberComponent = ({ time, number }) => {
       <View className='number'>
       {
         num.map((e, k) => (
-          <View className='num-ele' key={k}><View className={cn(['bg', `s_${e}`])} /></View>
+          <View key={k}><Text className={cn(['bg', `s_${e}`])}> </Text></View>
         ))
       }
     </View>
   );
 }
 
-NumberComponent.propTypes = {
+Number.propTypes = {
   number: propTypes.number,
   time: propTypes.bool,
 };
 
-export default BaseFunctionComponent(NumberComponent);
+export default BaseFunctionComponent(Number);
