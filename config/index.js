@@ -53,6 +53,38 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    esnextModules: ['taro-ui'],
+    router: {
+      mode: 'hash'
+    },
+    webpackChain(chain, webpack) {
+      // 抑制不影响功能的警告
+      chain.set('ignoreWarnings', [
+        {
+          module: /node_modules\/@tarojs\/components/,
+        },
+        {
+          message: /webpackExports/,
+        },
+        {
+          message: /async\/await/,
+        },
+        {
+          message: /external.*remoteEntry/,
+        }
+      ]);
+      
+      // 关闭性能提示
+      chain.performance
+        .hints(false);
+        
+      // 配置 resolve fallback
+      chain.resolve
+        .set('fallback', {
+          fs: false,
+          path: false
+        });
+    },
     postcss: {
       autoprefixer: {
         enable: true,

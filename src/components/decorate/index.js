@@ -5,6 +5,9 @@ import BaseFunctionComponent from '../common/BaseFunctionComponent';
 import { i18n, lan } from '../../unit/const';
 import './index.less';
 
+// 判断是否为 H5 环境
+const isH5 = process.env.TARO_ENV === 'h5';
+
 const Decorate = () =>  {
     return (
       <View className='decorate'>
@@ -20,7 +23,8 @@ const Decorate = () =>  {
           <Text className={cn(['r', 'ml', 'span'])} />
           <Text className={cn(['r', 'ml', 'span'])} />
         </View>
-        <View className='h1'>{i18n.title[lan]}</View>
+        {/* H5 环境下隐藏标题 */}
+        {!isH5 && <View className='h1'>{i18n.title[lan]}</View>}
         <View className='view'>
           <Text className='c' />
           <View className='clear' />

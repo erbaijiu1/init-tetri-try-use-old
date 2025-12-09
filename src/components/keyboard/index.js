@@ -21,19 +21,49 @@ const handleTouchEnd = (key) => {
   todo[key].up(store);
 }
 
+// 判断是否为 H5 环境
+const isH5 = process.env.TARO_ENV === 'h5';
+
+// 按钮位置配置：小程序用 rpx，H5 用 px
+const buttonPositions = {
+  drop: {
+    top: isH5 ? '140px' : '280rpx',
+    left: isH5 ? '50px' : '100rpx',
+  },
+  left: {
+    top: isH5 ? '70px' : '140rpx',
+    left: isH5 ? '8px' : '16rpx',
+  },
+  right: {
+    top: isH5 ? '70px' : '140rpx',
+    left: isH5 ? '100px' : '200rpx',
+  },
+  rotate: {
+    top: isH5 ? '80px' : '160rpx',
+    left: isH5 ? '200px' : '400rpx',
+  },
+  reset: {
+    top: isH5 ? '0px' : '0rpx',
+    left: isH5 ? '98px' : '196rpx',
+  },
+  sound: {
+    top: isH5 ? '0px' : '0rpx',
+    left: isH5 ? '53px' : '106rpx',
+  },
+  pause: {
+    top: isH5 ? '0px' : '0rpx',
+    left: isH5 ? '8px' : '16rpx',
+  },
+};
+
 const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
   return (
-    <View
-      className='keyboard'
-      style={{ marginTop: '60rpx' }}
-    >
-      {/* 移除顶部的旋转按钮 */}
-
+    <View className='keyboard'>
       <Sbutton
         color='blue'
         size='s1'
-        top='280rpx'
-        left='100rpx'
+        top={buttonPositions.drop.top}
+        left={buttonPositions.drop.left}
         label={i18n.drop[lan]}
         arrow='translate(0,-70rpx) rotate(180deg)'
         active={keyboard.get('drop')}
@@ -43,8 +73,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='140rpx'
-        left='16rpx'
+        top={buttonPositions.left.top}
+        left={buttonPositions.left.left}
         label={i18n.left[lan]}
         arrow='translate(60rpx, -12rpx) rotate(270deg)'
         active={keyboard.get('left')}
@@ -54,8 +84,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s1'
-        top='140rpx'
-        left='200rpx'
+        top={buttonPositions.right.top}
+        left={buttonPositions.right.left}
         label={i18n.right[lan]}
         arrow='translate(-60rpx, -12rpx) rotate(90deg)'
         active={keyboard.get('right')}
@@ -65,8 +95,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='blue'
         size='s0'
-        top='160rpx'
-        left='400rpx'
+        top={buttonPositions.rotate.top}
+        left={buttonPositions.rotate.left}
         label={i18n.rotation[lan]}
         active={keyboard.get('rotate')}
         onTouchstart={() => handleTouchStart('rotate')}
@@ -75,8 +105,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='red'
         size='s2'
-        top='0rpx'
-        left='196rpx'
+        top={buttonPositions.reset.top}
+        left={buttonPositions.reset.left}
         label={`${i18n.reset[lan]}(R)`}
         active={keyboard.get('reset')}
         onTouchstart={() => handleTouchStart('r')}
@@ -85,8 +115,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='green'
         size='s2'
-        top='0rpx'
-        left='106rpx'
+        top={buttonPositions.sound.top}
+        left={buttonPositions.sound.left}
         label={`${i18n.sound[lan]}(S)`}
         active={keyboard.get('music')}
         onTouchstart={() => handleTouchStart('s')}
@@ -95,8 +125,8 @@ const Keyboard = ({ keyboard = Immutable.Map({}) }) => {
       <Sbutton
         color='green'
         size='s2'
-        top='0rpx'
-        left='16rpx'
+        top={buttonPositions.pause.top}
+        left={buttonPositions.pause.left}
         label={`${i18n.pause[lan]}(P)`}
         active={keyboard.get('pause')}
         onTouchstart={() => handleTouchStart('p')}

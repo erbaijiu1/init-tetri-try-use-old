@@ -5,5 +5,16 @@ module.exports = {
   defineConstants: {
   },
   mini: {},
-  h5: {}
+  h5: {
+    devServer: {
+      hot: true,
+      port: 10086,
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false
+        }
+      }
+    }
+  }
 }

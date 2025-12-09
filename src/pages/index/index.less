@@ -1,24 +1,49 @@
 .app{
   width: 100%;
-  height: 100%;
-  position: absolute;
+  min-height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding: 10px 20px;
   background: #efcc19;
-  transform: scale(1.1);
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .rect{
   width: 480px;
+  max-width: calc(100vw - 40px);
   padding: 45px 0 35px;
   border: #000 solid;
   border-width: 0 10px 10px;
-  margin: 0 auto;
+  margin: 10px auto;
   position: relative;
-  &.drop{ -webkit-transform:translateY(5px);transform:translateY(5px); }
+  flex-shrink: 0;
+  
+  &.drop{ 
+    -webkit-transform:translateY(5px);
+    transform:translateY(5px); 
+  }
 
+  @media (max-width: 768px) {
+    transform: scale(0.85);
+    transform-origin: center center;
+    margin: 5px auto;
+  }
+
+  @media (max-width: 600px) {
+    transform: scale(0.75);
+    transform-origin: center center;
+  }
+
+  @media (max-width: 480px) {
+    transform: scale(0.65);
+    transform-origin: center center;
+    margin: 0 auto;
+  }
 }
 
 .screen{

@@ -1,6 +1,25 @@
 .keyboard{
   width: 580px;
+  max-width: calc(100vw - 40px);
   height: 330px;
-  margin: 20px auto 0;
-  position:relative;
+  margin: 10px auto;
+  position: relative;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    transform: scale(0.85);
+    transform-origin: center center;
+    margin: 5px auto;
+  }
+
+  @media (max-width: 600px) {
+    transform: scale(0.75);
+    transform-origin: center center;
+  }
+
+  @media (max-width: 480px) {
+    transform: scale(0.65);
+    transform-origin: center center;
+    margin: 0 auto;
+  }
 }
