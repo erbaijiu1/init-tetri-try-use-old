@@ -62,8 +62,8 @@ const down = (store) => {
         if (cur) {
           return;
         }
-        if (music.move) {
-          music.move();
+        if (music.fall) {
+          music.fall();
         }
         let startLines = state.get('startLines');
         startLines = startLines - 1 < 0 ? 10 : startLines - 1;

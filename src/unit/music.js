@@ -4,33 +4,130 @@ import bgmSource from '../asset/music/music.mp3';
 
 export const music = {};
 
-let timer_fall = null;
-let timer_over = null;
-let context = null;
+// 音频片段配置
+const AUDIO_CLIPS = {
+  start: { startTime: 3.722, duration: 3.633 },
+  clear: { startTime: 0, duration: 0.7675 },
+  fall: { startTime: 1.2558, duration: 0.3546 },
+  gameover: { startTime: 8.128, duration: 1.144 },
+  rotate: { startTime: 2.257, duration: 0.281 },
+  move: { startTime: 2.909, duration: 0.24 },
+};
 
-const initAudio = () => {
-  if (!context) {
-    context = Taro.createInnerAudioContext();
-    context.obeyMuteSwitch = false;
-    context.src = bgmSource;
+// 音频池：为每个音效类型创建独立的 context
+const audioPool = {};
+const activeTimers = {};
+let isInitialized = false;
+
+// 预加载所有音频 context
+const initAudioPool = () => {
+  if (isInitialized) return;
+  
+  Object.keys(AUDIO_CLIPS).forEach(key => {
+    const ctx = Taro.createInnerAudioContext();
+    ctx.src = bgmSource;
     
-    context.onPlay(() => {
-      console.log('音频开始播放');
-    });
+    // 静默处理所有错误
+    ctx.onError(() => {});
+    ctx.onEnded(() => {});
+    ctx.onStop(() => {});
     
-    context.onError((res) => {
-      console.error(`音频错误: ${res.errMsg}`, res.errCode);
-    });
-    
-    context.onStop(() => {
-      console.log('音频停止');
-    });
-    
-    context.onEnded(() => {
-      console.log('音频播放结束');
-    });
+    audioPool[key] = ctx;
+  });
+  
+  isInitialized = true;
+};
+
+// 停止指定音效
+const stopSound = (type) => {
+  if (activeTimers[type]) {
+    clearTimeout(activeTimers[type]);
+    activeTimers[type] = null;
   }
-  return context;
+  
+  const ctx = audioPool[type];
+  if (ctx) {
+    try {
+      ctx.stop();
+    } catch (e) {}
+  }
+};
+
+// 播放指定音效（只停止同类型的音效）
+const playSound = (type) => {
+  if (!store.getState().get('music')) {
+    return;
+  }
+  
+  // 确保音频池已初始化
+  if (!isInitialized) {
+    initAudioPool();
+  }
+  
+  const ctx = audioPool[type];
+  const config = AUDIO_CLIPS[type];
+  
+  if (!ctx || !config) {
+    return;
+  }
+  
+  // 只停止该音效的前一次播放（相同类型才停止）
+  if (activeTimers[type]) {
+    stopSound(type);
+  }
+  
+  // 使用 Promise 链确保 seek 和 play 按顺序执行
+  Promise.resolve()
+    .then(() => {
+      // 先 seek
+      return Promise.resolve(ctx.seek(config.startTime));
+    })
+    .then(() => {
+      // 再 play
+      return Promise.resolve(ctx.play());
+    })
+    .catch(() => {
+      // 如果失败，尝试重新创建这个 context
+      try {
+        const newCtx = Taro.createInnerAudioContext();
+        newCtx.src = bgmSource;
+        newCtx.onError(() => {});
+        newCtx.onEnded(() => {});
+        newCtx.onStop(() => {});
+        
+        audioPool[type] = newCtx;
+        
+        // 重试播放
+        newCtx.seek(config.startTime);
+        Promise.resolve(newCtx.play()).catch(() => {});
+      } catch (e) {}
+    });
+  
+  // 设置自动停止
+  activeTimers[type] = setTimeout(() => {
+    stopSound(type);
+  }, config.duration * 1000);
+};
+
+// 停止所有音效
+music.stopAll = () => {
+  Object.keys(audioPool).forEach(key => {
+    stopSound(key);
+  });
+};
+
+// 销毁音频池（释放资源）
+music.destroy = () => {
+  music.stopAll();
+  Object.keys(audioPool).forEach(key => {
+    if (audioPool[key]) {
+      try {
+        audioPool[key].destroy();
+      } catch (e) {}
+      delete audioPool[key];
+    }
+  });
+  isInitialized = false;
 };
 
 music.killStart = () => {
@@ -39,101 +136,27 @@ music.killStart = () => {
 
 music.start = () => {
   music.killStart();
-  if (!store.getState().get('music')) {
-    return;
-  }
-  const ctx = initAudio();
-  const startTime = 3.722;
-  const duration = 3.633;
-  ctx.seek(startTime);
-  ctx.play();
-  let timer_start = setTimeout(() => {
-    ctx.stop();
-    if (timer_start) timer_start = null;
-  }, duration * 1000);
+  playSound('start');
 };
 
 music.clear = () => {
-  if (!store.getState().get('music')) {
-    return;
-  }
-  const ctx = initAudio();
-  const startTime = 0;
-  const duration = 0.7675;
-  ctx.seek(startTime);
-  ctx.play();
-  let timer_clear = setTimeout(() => {
-    ctx.stop();
-    if (timer_clear) timer_clear = null;
-  }, duration * 1000);
+  playSound('clear');
 };
 
 music.fall = () => {
-  if (!store.getState().get('music')) {
-    return;
-  }
-  if (timer_fall) {
-    clearTimeout(timer_fall);
-    timer_fall = null;
-  }
-  const ctx = initAudio();
-  const startTime = 1.2558;
-  const duration = 0.3546;
-  ctx.seek(startTime);
-  ctx.play();
-  timer_fall = setTimeout(() => {
-    ctx.stop();
-    if (timer_fall) timer_fall = null;
-  }, duration * 1000);
+  playSound('fall');
 };
 
 music.gameover = () => {
-  if (!store.getState().get('music')) {
-    return;
-  }
-  if (timer_over) {
-    clearTimeout(timer_over);
-    timer_over = null;
-  }
-  const ctx = initAudio();
-  const startTime = 8.128;
-  const duration = 1.144;
-  ctx.seek(startTime);
-  ctx.play();
-  timer_over = setTimeout(() => {
-    ctx.stop();
-    if (timer_over) timer_over = null;
-  }, duration * 1000);
+  playSound('gameover');
 };
 
 music.rotate = () => {
-  if (!store.getState().get('music')) {
-    return;
-  }
-  const ctx = initAudio();
-  const startTime = 2.257;
-  const duration = 0.281;
-  ctx.seek(startTime);
-  ctx.play();
-  let timer_rotate = setTimeout(() => {
-    ctx.stop();
-    if (timer_rotate) timer_rotate = null;
-  }, duration * 1000);
+  playSound('rotate');
 };
 
 music.move = () => {
-  if (!store.getState().get('music')) {
-    return;
-  }
-  const ctx = initAudio();
-  const startTime = 2.909;
-  const duration = 0.24;
-  ctx.seek(startTime);
-  ctx.play();
-  let timer_move = setTimeout(() => {
-    ctx.stop();
-    if (timer_move) timer_move = null;
-  }, duration * 1000);
+  playSound('move');
 };
 
 export default music;

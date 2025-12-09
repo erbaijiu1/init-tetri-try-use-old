@@ -10,10 +10,7 @@ module.exports = {
       hot: true,
       port: 10086,
       client: {
-        overlay: {
-          errors: true,
-          warnings: false
-        }
+        overlay: false  // 完全禁用错误覆盖层
       }
     }
   }
